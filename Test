@@ -1,0 +1,42 @@
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #animated-title {
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="animated-title">Titre animé</h1>
+
+  <script>
+    // Fonction pour animer le titre
+    function animateTitle() {
+      const title = document.getElementById('animated-title');
+      let position = -title.offsetWidth; // Démarre le titre en dehors de la vue à gauche
+
+      function moveTitle() {
+        position++;
+        title.style.transform = `translateX(${position}px)`;
+
+        if (position < window.innerWidth) {
+          requestAnimationFrame(moveTitle);
+        }
+      }
+
+      moveTitle();
+    }
+
+    // Appeler la fonction pour démarrer l'animation lorsque la page est chargée
+    window.addEventListener('load', animateTitle);
+  </script>
+</body>
+</html>
